@@ -85,5 +85,7 @@
       "*.fls",
       "*.log",
       "*.fdb_latexmk"
-    ]
+    ],
+    "latex-workshop.message.error.show": false
+    
 }

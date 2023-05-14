@@ -2,6 +2,8 @@
 \usepackage{zh_CN-Adobefonts_external} 
 \usepackage{linespacing_fix}
 \usepackage{cite}
+\usepackage{fontawesome}
+\usepackage{hyperref} 
 \begin{document}
 \pagenumbering{gobble}
 
@@ -11,103 +13,97 @@
 %***使用本模板，只需要参照输出的PDF，在本文档的相应位置做简单替换即可
 %***修改之后，输出更新后的PDF，只需要点击Overleaf中的“Recompile”按钮即可
 %**********************************姓名********************************************
-\name{方鸿渐}
+\name{龚开宸}
 %**********************************联系信息****************************************
 %第一个括号里写手机号，第二个写邮箱
-\contactInfo{(+86) 1234567890}{test@test.test}
+\contactInfo{18270359936}{trace1729@gmail.com}
+\otherInfo{性别：男}{籍贯：江西}{}{}
 %**********************************其他信息****************************************
 %在大括号内填写其他信息，最多填写4个，但是如果选择不填信息，
 %那么大括号必须空着不写，而不能删除大括号。
 %\otherInfo后面的四个大括号里的所有信息都会在一行输出
 %如果想要写两行，那就用两次这个指令（\otherInfo{}{}{}{}）即可
-\otherInfo{性别：男}{籍贯：江南}{}{}
-\otherInfo{来历：钱钟书《围城》}{}{}{}
 %*********************************照片**********************************************
 %照片需要放到images文件夹下，名字必须是you.jpg，如果不需要照片可以不添加此行命令
 %0.15的意思是，照片的宽度是页面宽度的0.15倍，调整大小，避免遮挡文字
-\yourphoto{0.15}
+ \yourphoto{0.15}
 %**********************************正文**********************************************
 
 
 %***大标题，下面有横线做分割
 %***一般的标题有：教育背景，实习（项目）经历，工作经历，自我评价，求职意向，等等
-\section{教育背景}
 
 
 %***********一行子标题**************
 %***第一个大括号里的内容向左对齐，第二个大括号里的内容向右对齐
 %***\textbf{}括号里的字是粗体，\textit{}括号里的字是斜体
-\datedsubsection{\textbf{克莱登大学}，克莱登实验班，\textit{博士}}{1926.09 - 1930.06}
 
 
 %***********列举*********************
 %***可添加多个\item，得到多个列举项，类似的也可以用\textbf{}、\textit{}做强调
-\begin{itemize} [parsep=1ex]
-  \item \textbf{证书来源}：购买自爱尔兰商人
+\section{基本信息}
+\textbf{GPA: } 3.72 / 4 \\
+\textbf{专业排名: } 12 / 211 (5.3\%)  \\
+\textbf{语言技能: } CET-4: 571 \quad CET-6: 568 \\
+\textbf{本科院校: } 南昌大学 (211工程， 双一流建设高校) 
+
+% \end{itemize}
+
+\section{项目经历}
+\datedsubsection{\href{https://git.acwing.com/trace4869/riscv-cpu}{ \textbf{ 基于 Logisim 的 RISC-V CPU} }}{}
+  使用 Logisim 实现了二级流水的 RISC-V CPU。支持 \textbf{R}, \textbf{I}, \textbf{S}, 
+    \textbf{B}, \textbf{U}, \textbf{J} 六种类型的指令，共 35 条。 
+ \\   \textbf{实现过程}:  
+  \begin{itemize}
+    \item 通过 Logisim 的隧道功能，可以将CPU分为6个子模块: ALU, RegFile,  
+    Save \& Load, Imm-Gen, Data Path, Control Logic。
+    \item 由于前三个模块功能相对独立，在 Logisim 实现后，就可
+    对其进行单元测试。前三个模块构建完成后，就能开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
+    由于不同类型的指令，对应的后三个模块的结构也相对独立。我从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，就可以
+    进行集成测试。 
+    \item 实现所有指令类型后，即可进行流水线设计。我将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
+    阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，就能保证在 IF 和 EX 两个阶段有着不同的 PC, INS。此外，还需
+    解决因条件转移指令带来的控制冒险。我们可以从控制信号 PCsel 知道是否需要跳转，需要跳转的话就插入一条 无操作指令 nop 来消除冒险。 
+
 \end{itemize}
 
-
-\datedsubsection{\textbf{北平某大学}，实验班，\textit{本科}}{1922.09 - 1926.06}
-\begin{itemize} [parsep=1ex]
-  \item \textbf{土木工程系}：不喜欢，转系
-  \item \textbf{社会学系}：不喜欢，转系
-  \item \textbf{中国文学系}：从此毕业
+\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{ \textbf{XV6 操作系统内核优化} }}{}
+  XV6 是一个类 unix 操作系统。在阅读源码和官方手册的基础上，为XV6增加了新功能，优化了 XV6 的性能。在项目中加深了对操作系统的理
+  解，锻炼了系统编程的能力。
+ \\   \textbf{功能实现}:  
+\begin{itemize}
+ \item 为 XV6 增加了 backtrace, sysinfo 等系统调用。backtrace 可以追踪一个系统调用函数在运行过程中的调用情况，能够提升调试
+ 的效率。sysinfo 能在终端打印出系统目前所可用的内存大小和正在运行的CPU核心数量, 能有效的监控系统运行情况。
+ \item 实现了页表的访问检测，通过给定起始和终止地址, XV6可以找出这段地址空间上访问过的页表。页表的访问信息可以为
+ 垃圾回收器提供一个良好的参考，提升系统运行的效率。
+ \item 为XV6添加一个时钟中断。为一个进程设置好中断后，每隔n个时钟周期，XV6会自动中断运行进程，在终端打进程占用资源情况，
+ 再恢复之前进程的执行。这个功能可以为一些计算密集型程序的设计调试提供帮助。
 \end{itemize}
 
-\section{职业经历}
-
-\datedsubsection{\textbf{点金银行}，职员}{1930.09}
-\begin{itemize}[parsep=0.5ex]
-  \item 高中订婚的未婚妻的父亲的公司
+\datedsubsection{\href{https://gitee.com/trace1729/audio-app}{ \textbf{基于 Android Compose 的音乐播放器 } }}{}
+  使用声明式编程开发的一款音乐播放器，采用了 MVVM 架构。 
+ \\   \textbf{实现过程}:  
+\begin{itemize}
+ %  \item 在阅读了 Google 关于 Android 的官方文档后，将声明式开放与命令式开放进行了对比，最终选择了命令式开发。
+  \item \textbf{界面导航: } 采用 Navigation 组件进行页面导航，并且将播放器的全部状态提升到 Navhost, 再由 Navhost 将
+  状态传递给给个页面
+  \item \textbf{音乐播放: } 首先将python的爬取服务部署在服务器上，这样播放器就可以向服务器发送网络请求，
+    爬虫服务接受到网络请求后爬取数据，并将获得的数据返回给播放器。播放器通过 ExoPlayer 这个组件解析获取到的音乐数据,
+    进行播放。
+  \item \textbf{数据持久化: } 音乐播放器支持登入、注册与储存用户偏好。通过 Room 组件，将用户的账号和加密后的
+  密码存储手机上的 sqlite 中；通过 Datastore 组件将用户偏好储存在文件中。
+  \item \textbf{总结: } 采用声明式编程进行开发，代码的可读性会更高；且程序可以在低层次进行代码复用，有效的提升了程序运行的性能。
 \end{itemize}
 
-\datedsubsection{\textbf{三闾大学}，副教授}{1931.09 - 1934.6}
-\begin{itemize}[parsep=0.5ex]
-  \item 同事：李梅亭、顾尔谦、孙柔嘉、赵辛楣
-\end{itemize}
+\section{荣誉奖项}
+2021-2022学年一等奖学金、优秀共青团员、社会活动积极分子等。
 
-\datedsubsection{\textbf{上海某报社}，职员}{1934.09 -}
-\begin{itemize}[parsep=0.5ex]
-  \item 生活不如意
-\end{itemize}
-
-\section{情感经历}
-
-\datedsubsection{\textbf{鲍小姐}，一夜情}{1930.06}
-\begin{itemize}[parsep=0.5ex]
-  \item \textbf{地点}：回国船上
-\end{itemize}
-
-\datedsubsection{\textbf{苏文纨}，单恋}{1930.08 - 1931.08}
-\begin{itemize}[parsep=0.5ex]
-  \item \textbf{地点}：上海
-  \item 苏小姐一直钟情于方鸿渐，也错以为方鸿渐对其有意
-  \item 方鸿渐在月夜下情境所迫，吻了苏小姐，第二日不得不告诉苏小姐自己所爱并非她
-\end{itemize}
-
-\datedsubsection{\textbf{唐晓芙}，热恋}{1930.08 - 1931.08}
-\begin{itemize}[parsep=0.5ex]
-  \item \textbf{地点}：上海
-  \item 闲暇之余经常去苏小姐家探望，由此结识了苏小姐的表妹唐晓芙唐小姐
-  \item 由于苏小姐挑拨，唐小姐也与方鸿渐一刀两断
-\end{itemize}
-
-\datedsubsection{\textbf{孙柔嘉}，妻子}{1934.08 -}
-\begin{itemize}[parsep=0.5ex]
-  \item \textbf{订婚地点}：三闾大学
-  \item 方、孙二人在赵辛楣家中遇上苏文纨，神情谈吐间遭到苏小姐的讽刺
-  \item 二人回到上海，因工作、父母、亲戚妯娌等多方面问题又多次激发矛盾
-\end{itemize}
-
-\section{简历写作注意事项}
-
-写作时不要泛泛而谈太笼统，要应用STAR原则，即Situation（情景）、Task（任务）、Action（行动）和Result（结果）四个英文单词的首字母组合。
-
-\begin{itemize}[parsep=0.5ex]
-  \item S指的是situation，事情是在什么情况下发生
-  \item T指的是task，你是如何明确你的目标的
-  \item A指的是action，针对这样的情况分析，你采用了什么行动方式
-  \item R指的是result，结果怎样，在这样的情况下你学习到了什么
+% \section{\faInfo\ 社会实践/其他}
+\section{社区参与/实践其他}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.2ex]
+  \item 南昌大学新媒体研发部成员，为部门同学提供 Linux 基础的课程培训。(2021-2023)
+  \item 南昌大学百年校庆志愿者 (2021)，第八届互联网+创新创新业大赛志愿者(2022)。活动期间，为老师，同学提供技术支持。
 \end{itemize}
 
 \end{document}
