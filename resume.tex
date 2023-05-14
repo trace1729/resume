@@ -45,9 +45,14 @@
 \textbf{GPA: } 3.72 / 4 \\
 \textbf{专业排名: } 12 / 211 (5.3\%)  \\
 \textbf{语言技能: } CET-4: 571 \quad CET-6: 568 \\
-\textbf{本科院校: } 南昌大学 (211工程， 双一流建设高校) 
+\textbf{本科院校: } 南昌大学-计算机科学与技术(211工程， 双一流建设高校) 
 
 % \end{itemize}
+
+\section{技术能力}
+\begin{itemize}
+  \item \textbf{编程语言: } 熟悉 c/cpp, java, python, kotlin, shell
+\end{itemize}
 
 \section{项目经历}
 \datedsubsection{\href{https://git.acwing.com/trace4869/riscv-cpu}{ \textbf{ 基于 Logisim 的 RISC-V CPU} }}{}
@@ -57,12 +62,11 @@
   \begin{itemize}
     \item 通过 Logisim 的隧道功能，可以将CPU分为6个子模块: ALU, RegFile,  
     Save \& Load, Imm-Gen, Data Path, Control Logic。
-    \item 由于前三个模块功能相对独立，在 Logisim 实现后，就可
-    对其进行单元测试。前三个模块构建完成后，就能开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
+    \item 由于前三个模块功能相对独立，在 Logisim 实现后，可对其进行单元测试。前三个模块构建完成后，就可以开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
     由于不同类型的指令，对应的后三个模块的结构也相对独立。我从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，就可以
     进行集成测试。 
     \item 实现所有指令类型后，即可进行流水线设计。我将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
-    阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，就能保证在 IF 和 EX 两个阶段有着不同的 PC, INS。此外，还需
+    阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，这样在 IF 和 EX 两个阶段有着不同的 PC, INS。此外，还需
     解决因条件转移指令带来的控制冒险。我们可以从控制信号 PCsel 知道是否需要跳转，需要跳转的话就插入一条 无操作指令 nop 来消除冒险。 
 
 \end{itemize}
@@ -86,8 +90,8 @@
 \begin{itemize}
  %  \item 在阅读了 Google 关于 Android 的官方文档后，将声明式开放与命令式开放进行了对比，最终选择了命令式开发。
   \item \textbf{界面导航: } 采用 Navigation 组件进行页面导航，并且将播放器的全部状态提升到 Navhost, 再由 Navhost 将
-  状态传递给给个页面
-  \item \textbf{音乐播放: } 首先将python的爬取服务部署在服务器上，这样播放器就可以向服务器发送网络请求，
+  状态传递给页面
+  \item \textbf{音乐播放: } 首先将python的爬取服务部署在服务器上，播放器可向服务器发送网络请求，
     爬虫服务接受到网络请求后爬取数据，并将获得的数据返回给播放器。播放器通过 ExoPlayer 这个组件解析获取到的音乐数据,
     进行播放。
   \item \textbf{数据持久化: } 音乐播放器支持登入、注册与储存用户偏好。通过 Room 组件，将用户的账号和加密后的
