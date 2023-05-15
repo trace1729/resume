@@ -49,10 +49,6 @@
 
 % \end{itemize}
 
-\section{技术能力}
-\begin{itemize}
-  \item \textbf{编程语言: } 熟悉 c/cpp, java, python, kotlin, shell
-\end{itemize}
 
 \section{项目经历}
 \datedsubsection{\href{https://git.acwing.com/trace4869/riscv-cpu}{ \textbf{ 基于 Logisim 的 RISC-V CPU} }}{}
@@ -60,14 +56,14 @@
     \textbf{B}, \textbf{U}, \textbf{J} 六种类型的指令，共 35 条。 
  \\   \textbf{实现过程}:  
   \begin{itemize}
-    \item 通过 Logisim 的隧道功能，可以将CPU分为6个子模块: ALU, RegFile,  
+    \item 通过 Logisim 的隧道功能，将CPU分为6个子模块: ALU, RegFile,  
     Save \& Load, Imm-Gen, Data Path, Control Logic。
-    \item 由于前三个模块功能相对独立，在 Logisim 实现后，可对其进行单元测试。前三个模块构建完成后，就可以开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
-    由于不同类型的指令，对应的后三个模块的结构也相对独立。我从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，就可以
+    \item 由于前三个模块功能相对独立，在 Logisim 实现后，就进行单元测试。前三个模块构建完成后，就可以开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
+    由于不同类型的指令，对应的后三个模块的结构也相对独立。可从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，
     进行集成测试。 
-    \item 实现所有指令类型后，即可进行流水线设计。我将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
+    \item 实现所有指令类型后，即可进行流水线设计。将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
     阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，这样在 IF 和 EX 两个阶段有着不同的 PC, INS。此外，还需
-    解决因条件转移指令带来的控制冒险。我们可以从控制信号 PCsel 知道是否需要跳转，需要跳转的话就插入一条 无操作指令 nop 来消除冒险。 
+    解决因条件转移指令带来的控制冒险。可以从控制信号 PCsel 知道是否需要跳转，需要跳转的话就插入一条 无操作指令 nop 来消除冒险。 
 
 \end{itemize}
 
@@ -99,11 +95,16 @@
   \item \textbf{总结: } 采用声明式编程进行开发，代码的可读性会更高；且程序可以在低层次进行代码复用，有效的提升了程序运行的性能。
 \end{itemize}
 
+\section{技术能力}
+\begin{itemize}
+  \item \textbf{编程语言: } 熟悉 c/cpp, java, python, kotlin, shell
+\end{itemize}
+
 \section{荣誉奖项}
 2021-2022学年一等奖学金、优秀共青团员、社会活动积极分子等。
 
 % \section{\faInfo\ 社会实践/其他}
-\section{社区参与/实践其他}
+\section{社会活动}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.2ex]
   \item 南昌大学新媒体研发部成员，为部门同学提供 Linux 基础的课程培训。(2021-2023)
