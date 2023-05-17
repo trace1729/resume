@@ -58,7 +58,7 @@
   \begin{itemize}
     \item 通过 Logisim 的隧道功能，将CPU分为6个子模块: ALU, RegFile,  
     Save \& Load, Imm-Gen, Data Path, Control Logic。
-    \item 由于前三个模块功能相对独立，在 Logisim 实现后，就进行单元测试。前三个模块构建完成后，就可以开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
+    \item 由于前三个模块功能相对独立，在 Logisim 实现后，可进行单元测试。测试通过后，开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
     由于不同类型的指令，对应的后三个模块的结构也相对独立。可从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，
     进行集成测试。 
     \item 实现所有指令类型后，即可进行流水线设计。将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
