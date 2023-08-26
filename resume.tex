@@ -16,7 +16,7 @@
 \name{龚开宸}
 %**********************************联系信息****************************************
 %第一个括号里写手机号，第二个写邮箱
-\contactInfo{18270359936}{trace1729@gmail.com}
+\contactInfo{18270359936}{kaichen@email.ncu.edu.cn}
 \otherInfo{性别：男}{籍贯：江西}{}{}
 %**********************************其他信息****************************************
 %在大括号内填写其他信息，最多填写4个，但是如果选择不填信息，
@@ -51,64 +51,79 @@
 
 
 \section{项目经历}
+
+\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{ \textbf{XV6 操作系统内核改进} }}{}
+  XV6 是一个类 unix 操作系统。在阅读源码和官方手册的基础上，为XV6增加了新功能，优化了 XV6 的性能。在项目中加深了对操作系统的理
+  解，锻炼了系统编程的能力。
+ \\   \textbf{功能实现}:  
+\begin{itemize}
+ \item 为 XV6 增加了 backtrace, sysinfo 等系统调用。backtrace 可以根据栈帧打印函数调用链，能够提升调试
+ 的效率。sysinfo 能在终端打印出系统目前所可用的内存大小和目前非阻塞状态的进程数量, 能有效的监控系统运行情况。
+ \item 为XV6添加一个用户中断，可通过系统调用设置周期性的执行用户指定的handler函数。
+ 这个功能可以为一些计算密集型程序的设计调试提供帮助。
+ \item 为XV6进行了写时复制(copy on write)。 在使用 fork 创建子进程时，不分配新空间，只拷贝引用。当子进程试图修改资源内容时，再
+ 为其分配物理内存。
+\end{itemize}
+
 \datedsubsection{\href{https://git.acwing.com/trace4869/riscv-cpu}{ \textbf{ 基于 Logisim 的 RISC-V CPU} }}{}
   使用 Logisim 实现了二级流水的 RISC-V CPU。支持 \textbf{R}, \textbf{I}, \textbf{S}, 
     \textbf{B}, \textbf{U}, \textbf{J} 六种类型的指令，共 35 条。 
  \\   \textbf{实现过程}:  
   \begin{itemize}
-    \item 通过 Logisim 的隧道功能，将CPU分为6个子模块: ALU, RegFile,  
-    Save \& Load, Imm-Gen, Data Path, Control Logic。
-    \item 由于前三个模块功能相对独立，在 Logisim 实现后，可进行单元测试。测试通过后，开始搭建数据通路(Data Path)，控制逻辑(Control Logic) 和 立即数生成器(Imm-Gen)。
-    由于不同类型的指令，对应的后三个模块的结构也相对独立。可从最简单的\textbf{I} 型指令开始构建。完成一类指令结构的设计后，
-    进行集成测试。 
-    \item 实现所有指令类型后，即可进行流水线设计。将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
-    阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，这样在 IF 和 EX 两个阶段有着不同的 PC, INS。此外，还需
-    解决因条件转移指令带来的控制冒险。可以从控制信号 PCsel 知道是否需要跳转，需要跳转的话就插入一条 无操作指令 nop 来消除冒险。 
+    \item \textbf{模块化设计 } 将CPU分为5个子模块: ALU、 RegFile、  
+     Imm-Gen、 Data Path 和 Control Logic。
+    \item \textbf{指令实现 } 先完成 ALU、 RegFile 模块，之后从 I 型指令开始，不断完善Data Path、 Control Logic 和 Imm-Gen。
+    完成一类指令后，对 CPU 进行集成测试。
+    \item \textbf{流水线设计 } 将 CPU 的运行过程分为两个阶段，取指令(IF)和指令执行(EX)。在两个
+    阶段之间，通过寄存器保存程序计数器(PC)和PC对应的指令(INS)，
+    此外，还需通过控制信号PCsel和多路选择器来解决因条件转移指令带来的控制冒险。 
 
 \end{itemize}
 
-\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{ \textbf{XV6 操作系统内核优化} }}{}
-  XV6 是一个类 unix 操作系统。在阅读源码和官方手册的基础上，为XV6增加了新功能，优化了 XV6 的性能。在项目中加深了对操作系统的理
-  解，锻炼了系统编程的能力。
- \\   \textbf{功能实现}:  
+% \datedsubsection{\href{https://gitee.com/trace1729/dl}{ \textbf{基于 Android Compose 的音乐播放器 } }}{}
+%   使用声明式编程开发的一款音乐播放器，采用了 MVVM 架构。 
+%  \\   \textbf{实现过程}:  
+% \begin{itemize}
+%   \item \textbf{界面导航: } 采用 Navigation 组件进行页面导航，并且将播放器的全部状态提升到 Navhost, 再由 Navhost 将
+%   状态传递给页面
+%   \item \textbf{音乐播放: } 首先将python的爬取服务部署在服务器上，播放器可向服务器发送网络请求，
+%     爬虫服务接受到网络请求后爬取数据，并将获得的数据返回给播放器。播放器通过 ExoPlayer 这个组件解析获取到的音乐数据,
+%     进行播放。
+%   \item \textbf{数据持久化: } 音乐播放器支持登入、注册与储存用户偏好。通过 Room 组件，将用户的账号和加密后的
+%   密码存储手机上的 sqlite 中；通过 Datastore 组件将用户偏好储存在文件中。
+% \end{itemize}
+
+\datedsubsection{\href{https://gitee.com/trace1729/dl}{ \textbf{基于 经典卷积神经网络的图片分类} }}{}
+阅读经典神经网络论文，并尝试复现。
 \begin{itemize}
- \item 为 XV6 增加了 backtrace, sysinfo 等系统调用。backtrace 可以追踪一个系统调用函数在运行过程中的调用情况，能够提升调试
- 的效率。sysinfo 能在终端打印出系统目前所可用的内存大小和正在运行的CPU核心数量, 能有效的监控系统运行情况。
- \item 实现了页表的访问检测，通过给定起始和终止地址, XV6可以找出这段地址空间上访问过的页表。页表的访问信息可以为
- 垃圾回收器提供一个良好的参考，提升系统运行的效率。
- \item 为XV6添加一个时钟中断。为一个进程设置好中断后，每隔n个时钟周期，XV6会自动中断运行进程，在终端打进程占用资源情况，
- 再恢复之前进程的执行。这个功能可以为一些计算密集型程序的设计调试提供帮助。
-\end{itemize}
+  \item 数据集 CIFAR-10,训练框架Pytorch,训练平台NVIDA 3070 (内存8G)。
+  \item 阅读了经典神经网络 AlexNet、VGG、GoogLeNet 以及 ResNet 的相关论文。对论文中采用的训练方案进行了复现
+  此外还了解 batch normalization、kaiming 初始化等相关论文工作。
+  \item \textbf{结论} VGG 网络占用内存最大(batch size 为 128 下，内存占用为7648MB)；采用预训练的ResNet分类效果最好，
+  正确率为 98.3\%。 
+\end{itemize} 
 
-\datedsubsection{\href{https://gitee.com/trace1729/audio-app}{ \textbf{基于 Android Compose 的音乐播放器 } }}{}
-  使用声明式编程开发的一款音乐播放器，采用了 MVVM 架构。 
- \\   \textbf{实现过程}:  
-\begin{itemize}
- %  \item 在阅读了 Google 关于 Android 的官方文档后，将声明式开放与命令式开放进行了对比，最终选择了命令式开发。
-  \item \textbf{界面导航: } 采用 Navigation 组件进行页面导航，并且将播放器的全部状态提升到 Navhost, 再由 Navhost 将
-  状态传递给页面
-  \item \textbf{音乐播放: } 首先将python的爬取服务部署在服务器上，播放器可向服务器发送网络请求，
-    爬虫服务接受到网络请求后爬取数据，并将获得的数据返回给播放器。播放器通过 ExoPlayer 这个组件解析获取到的音乐数据,
-    进行播放。
-  \item \textbf{数据持久化: } 音乐播放器支持登入、注册与储存用户偏好。通过 Room 组件，将用户的账号和加密后的
-  密码存储手机上的 sqlite 中；通过 Datastore 组件将用户偏好储存在文件中。
-  \item \textbf{总结: } 采用声明式编程进行开发，代码的可读性会更高；且程序可以在低层次进行代码复用，有效的提升了程序运行的性能。
-\end{itemize}
+% \section{主干课程}
+% 高等数学: \textbf{93 }  
+% 数字逻辑:  \textbf{90  }
+% 数值计算:  \textbf{90  }
+% 面向对象程序设计:  \textbf{95 }
+% 数据库原理:  \textbf{93}
+% 数据结构实践:  \textbf{97}
 
-\section{技术能力}
-\begin{itemize}
-  \item \textbf{编程语言: } 熟悉 c/cpp, java, python, kotlin, shell
-\end{itemize}
+\section{编程技能}
+熟悉 cpp / c、java、python、Android 开发 以及 Linux 系统的使用。
 
 \section{荣誉奖项}
 2021-2022学年一等奖学金、优秀共青团员、社会活动积极分子等。
+
 
 % \section{\faInfo\ 社会实践/其他}
 \section{社会活动}
 % increase linespacing [parsep=0.5ex]
 \begin{itemize}[parsep=0.2ex]
   \item 南昌大学新媒体研发部成员，为部门同学提供 Linux 基础的课程培训。(2021-2023)
-  \item 南昌大学百年校庆志愿者 (2021)，第八届互联网+创新创新业大赛志愿者(2022)。活动期间，为老师，同学提供技术支持。
+  \item 南昌大学百年校庆志愿者 (2021)，第八届互联网+创新创新业大赛志愿者(2021)。活动期间，为老师，同学提供技术支持。
 \end{itemize}
 
 \end{document}
