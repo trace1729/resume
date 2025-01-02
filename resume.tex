@@ -52,41 +52,30 @@
 
 % \end{itemize}
 
-
 \section{项目经历}
-
-\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{ \textbf{XV6 操作系统内核改进} }}{}
-  XV6 是一个类 unix 操作系统。在阅读源码和官方手册的基础上，为XV6增加了新功能，优化了 XV6 的性能。在项目中加深了对操作系统的理
-  解，锻炼了系统编程的能力。
- \\   \textbf{功能实现}:  
-\begin{itemize}
- \item 为 XV6 增加了 backtrace, sysinfo 等系统调用。backtrace 可以根据栈帧打印函数调用链，能够提升调试
- 的效率。sysinfo 能在终端打印出系统目前所可用的内存大小和目前非阻塞状态的进程数量, 能有效的监控系统运行情况。
- \item 重新设计了 XV6 的内存分配器。为每一个进程单独分配空闲内存链表，降低了 kalloc 实现中锁的竞争，提高了内存分配的效率。
- \item 为XV6进行了写时复制(copy on write)。 在使用 fork 创建子进程时，不分配新空间，只拷贝引用。当子进程试图修改资源内容时，再
- 为其分配物理内存。
+\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{\textbf{XV6 内核增强}}}{}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{项目概述}: 基于类 Unix 的 XV6 操作系统，深入阅读源码及官方文档，重点在性能优化和底层调试。  
+    \item \textbf{系统调用实现}: 增加了 \textbf{Backtrace} 和 \textbf{Sysinfo} 等系统调用，其中 \textbf{backtrace} 通过栈帧打印函数调用链，提高了调试效率；\textbf{sysinfo} 可监控当前可用内存和非阻塞进程数量，从而有效监控系统运行状态。
+    \item \textbf{内存分配器改进}: 重新设计 XV6 的内存分配机制，为每个进程维护独立的空闲内存链表，减少 \textbf{kalloc} 中的锁竞争，提高并发性能与内存分配效率。
+    \item \textbf{写时复制 (COW)}: 在使用 \textbf{Fork} 创建子进程时，先共享物理页面，只有在写操作时才为子进程分配实际物理内存，从而显著提升资源利用率。
 \end{itemize}
 
-\datedsubsection{\href{https://github.com/trace1729/ysyx}{ \textbf{ 一生一芯第六期B线 } }}{}
-  基于 Chisel/Verilog 的流水线 RISC-V 处理器。 
- \\   \textbf{主要内容}:  
-  \begin{itemize}
-    \item \textbf{软件} 实现RV32E行为模拟器NEMU (NJU-emulator), 为处理器添加各类 trace, 以及一个迷你调试器。
-    \item \textbf{硬件} 使用 chisel/verilog 实现的顺序5级流水线架构的RV32IM处理器, 支持异常能够运行RT-Thread系统, 可以通过AXI总线
-    连接到外设。
-    \item \textbf{测试} 本项目采取差分测试的方式验证处理器的行为，先通过开源模拟器spike校准NEMU，再通过NEMU校准处理器。
+\datedsubsection{\href{https://github.com/trace1729/ysyx}{\textbf{一生一芯第六期 B 线}}}{}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{整体架构}: 基于 Chisel/Verilog 搭建的 RV32IM 流水线处理器，支持异常处理并可运行 RT-Thread 操作系统，通过 AXI 总线与外设交互。
+    \item \textbf{软件模拟器}: 实现了 RV32E 指令集的行为级模拟器 \textbf{NEMU}，支持多种 \textbf{Trace} 点与迷你调试器功能，便于观察处理器状态并分析性能瓶颈。
+    \item \textbf{差分测试}: 利用开源模拟器 \textbf{spike} 校准 \textbf{NEMU}，再以 \textbf{NEMU} 为基准校准硬件设计，实现软硬件一致性验证。
 \end{itemize}
 
-\datedsubsection{\href{https://github.com/trace1729/rvcpu-emulator}{ \textbf{ 基于RISC-V的流水线仿真器 } }}{}
- 使用 C++ 实现了支持二级Cache、虚拟内存、简单分支预测的乱序单发射五级流水线模拟器。
- \\   \textbf{主要内容}:  
-  \begin{itemize}
-    \item \textbf{Cache 配置} 可配置的Non-inclusive Cache，可通过配置文件指定Cache Line的大小 以及 Cache 的写回策略等。 
-    \item \textbf{虚拟内存 配置} 使用二级页表实现虚拟内存，一级、二级页面数都是10位。
-    \item \textbf{乱序算法} 分别使用Scoreboard算法和tomasulo算法实现处理器的乱序。
-    \item \textbf{项目特色} 基于 vue-press 可视化调试器。
+\datedsubsection{\href{https://github.com/trace1729/rvcpu-emulator}{\textbf{基于 RISC-V 的流水线仿真器}}}{}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{功能概述}: 使用 C++ 构建单发射、乱序执行的五级流水线模拟器，支持二级 Cache、虚拟内存和简易分支预测。
+    \item \textbf{Cache 设计}: 提供可配置的 Non-Inclusive Cache，包括可定制的 Cache Line 大小、写回策略等，以提升缓存性能。
+    \item \textbf{虚拟内存}: 使用二级页表实现虚拟内存映射，一级与二级页面索引均为 10 位，提高内存管理效率。
+    \item \textbf{乱序执行}: 分别采用 Scoreboard 和 Tomasulo 算法，实现乱序执行与流水线调度，减少指令阻塞并提升吞吐量。
+    \item \textbf{可视化调试}: 基于 \textbf{vue-press} 构建了可视化调试器，能够实时监控流水线状态和性能指标，便于快速定位瓶颈。
 \end{itemize}
-
 
 \section{编程技能}
 熟悉 cpp / c、java、python、Android 开发 以及 Linux 系统的使用。
