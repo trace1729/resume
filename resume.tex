@@ -53,19 +53,16 @@
 % \end{itemize}
 
 \section{项目经历}
-\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{\textbf{XV6 内核增强}}}{}
+\datedsubsection{\href{https://git.acwing.com/trace4869/xv6}{\textbf{XV6操作系统 内核增强}}}{}
 \begin{itemize}[leftmargin=*]
     \item \textbf{项目概述}: 基于类 Unix 的 XV6 操作系统，深入阅读源码及官方文档，重点在性能优化和底层调试。  
-    \item \textbf{系统调用实现}: 增加了 \textbf{Backtrace} 和 \textbf{Sysinfo} 等系统调用，其中 \textbf{backtrace} 通过栈帧打印函数调用链，提高了调试效率；\textbf{sysinfo} 可监控当前可用内存和非阻塞进程数量，从而有效监控系统运行状态。
-    \item \textbf{内存分配器改进}: 重新设计 XV6 的内存分配机制，为每个进程维护独立的空闲内存链表，减少 \textbf{kalloc} 中的锁竞争，提高并发性能与内存分配效率。
-    \item \textbf{写时复制 (COW)}: 在使用 \textbf{Fork} 创建子进程时，先共享物理页面，只有在写操作时才为子进程分配实际物理内存，从而显著提升资源利用率。
-\end{itemize}
-
-\datedsubsection{\href{https://github.com/trace1729/ysyx}{\textbf{一生一芯第六期 B 线}}}{}
-\begin{itemize}[leftmargin=*]
-    \item \textbf{整体架构}: 基于 Chisel/Verilog 搭建的 RV32IM 流水线处理器，支持异常处理并可运行 RT-Thread 操作系统，通过 AXI 总线与外设交互。
-    \item \textbf{软件模拟器}: 实现了 RV32E 指令集的行为级模拟器 \textbf{NEMU}，支持多种 \textbf{Trace} 点与迷你调试器功能，便于观察处理器状态并分析性能瓶颈。
-    \item \textbf{差分测试}: 利用开源模拟器 \textbf{spike} 校准 \textbf{NEMU}，再以 \textbf{NEMU} 为基准校准硬件设计，实现软硬件一致性验证。
+    \item \textbf{系统调用实现}: 增加了 \textbf{Backtrace} 和 \textbf{Sysinfo} 等系统调用，
+    其中 \textbf{Backtrace} 通过栈帧打印函数调用链，提高了调试效率；
+    \textbf{Sysinfo} 可监控当前可用内存和非阻塞进程数量，从而有效监控系统运行状态。
+    \item \textbf{内存分配器改进}: 重新设计 XV6 的内存分配机制，为每个进程维护独立的空闲内存链表，
+    减少 \textbf{Kalloc} 中的锁竞争，提高并发性能与内存分配效率。
+    \item \textbf{写时复制 (COW)}: 在使用 \textbf{Fork} 创建子进程时，先共享物理页面，
+    只有在写操作时才为子进程分配实际物理内存，从而显著提升资源利用率。
 \end{itemize}
 
 \datedsubsection{\href{https://github.com/trace1729/rvcpu-emulator}{\textbf{基于 RISC-V 的流水线仿真器}}}{}
@@ -74,8 +71,20 @@
     \item \textbf{Cache 设计}: 提供可配置的 Non-Inclusive Cache，包括可定制的 Cache Line 大小、写回策略等，以提升缓存性能。
     \item \textbf{虚拟内存}: 使用二级页表实现虚拟内存映射，一级与二级页面索引均为 10 位，提高内存管理效率。
     \item \textbf{乱序执行}: 分别采用 Scoreboard 和 Tomasulo 算法，实现乱序执行与流水线调度，减少指令阻塞并提升吞吐量。
-    \item \textbf{可视化调试}: 基于 \textbf{vue-press} 构建了可视化调试器，能够实时监控流水线状态和性能指标，便于快速定位瓶颈。
+    \item \textbf{可视化调试}: 基于 \textbf{VUE} 构建了可视化调试器，能够实时监控流水线状态和性能指标，便于快速定位瓶颈。
 \end{itemize}
+
+\datedsubsection{\href{https://github.com/trace1729/ysyx}{\textbf{一生一芯第六期 B 线}}}{}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{整体架构}: 基于 Chisel/Verilog 搭建的 RV32IM 流水线处理器，支持异常处理并可运行 RT-Thread 操作系统，
+    通过 AXI 总线与外设交互。
+    \item \textbf{软件模拟器}: 实现了 RV32E 指令集的行为级模拟器 \textbf{NEMU}，
+    支持多种 \textbf{Trace} 点与迷你调试器功能，便于观察处理器状态并分析性能瓶颈。
+    \item \textbf{差分测试}: 利用开源模拟器 \textbf{spike} 校准 \textbf{NEMU}，
+    再以 \textbf{NEMU} 为基准校准硬件设计，实现软硬件一致性验证。
+\end{itemize}
+
+
 
 \section{编程技能}
 熟悉 cpp / c、java、python、Android 开发 以及 Linux 系统的使用。
